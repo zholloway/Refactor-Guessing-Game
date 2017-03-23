@@ -101,7 +101,6 @@ namespace rewrittenNumberGuesser
 
                 //prompt for guess and parse
                 var parsedGuess = ParseUserGuess(PromptUserGuess());
-                Console.WriteLine(correctNum);
 
                 //feedback
                 var guessStatus = GiveFeedback(parsedGuess, correctNum);
@@ -114,6 +113,7 @@ namespace rewrittenNumberGuesser
                 {
                     pastGuesses += AddToGuessList(parsedGuess, guessStatus);
                     Console.WriteLine(pastGuesses);
+                    Console.Write($"You have {5 - numberTries} tries left. ");
                     parsedGuess = ParseUserGuess(PromptUserGuess());
                     guessStatus = GiveFeedback(parsedGuess, correctNum);
                     numberTries++;
@@ -122,8 +122,6 @@ namespace rewrittenNumberGuesser
                 //inform of win or loss and end game
                 gameComplete = EndGame(guessStatus, gameComplete);
             }
-
-            //create Link and store new guess
         }  
     }
 }
