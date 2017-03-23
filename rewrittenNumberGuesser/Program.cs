@@ -60,19 +60,14 @@ namespace rewrittenNumberGuesser
             return guessStatus;
         }
 
-        public static bool EndGame (string guessStatus, bool gameComplete)
+        public static bool EndGame (string guessStatus)
         {
-            if (guessStatus == "correct")
-            {
-                gameComplete = true;
-                Console.ReadLine();
-            }
-            else
+            if (guessStatus != "correct")
             {
                 Console.WriteLine("You failed. Game over.");
-                gameComplete = true;
-                Console.ReadLine();
             }
+
+            var gameComplete = true;
 
             return gameComplete;
         }
@@ -89,7 +84,25 @@ namespace rewrittenNumberGuesser
             return addition;
         }
 
-        public static void Main(string[] args)
+        public static string DetermineTryAgain (string guessStatus, int parsedGuess, int correctNum)
+        {
+            var numberTries = 1;
+            var pastGuesses = CreateGuessList();
+
+            while (guessStatus != "correct" && numberTries < 5)
+            {
+                pastGuesses += AddToGuessList(parsedGuess, guessStatus);
+                Console.WriteLine(pastGuesses);
+                Console.Write($"You have {5 - numberTries} tries left. ");
+                parsedGuess = ParseUserGuess(PromptUserGuess());
+                guessStatus = GiveFeedback(parsedGuess, correctNum);
+                numberTries++;
+            }
+
+            return guessStatus;
+        }
+
+        public static void PlayNumberGuesser ()
         {
             var gameComplete = false;
 
@@ -106,22 +119,17 @@ namespace rewrittenNumberGuesser
                 var guessStatus = GiveFeedback(parsedGuess, correctNum);
 
                 //try again if wrong
-                var numberTries = 1;
-                var pastGuesses = CreateGuessList();
-
-                while (guessStatus != "correct" && numberTries < 5)
-                {
-                    pastGuesses += AddToGuessList(parsedGuess, guessStatus);
-                    Console.WriteLine(pastGuesses);
-                    Console.Write($"You have {5 - numberTries} tries left. ");
-                    parsedGuess = ParseUserGuess(PromptUserGuess());
-                    guessStatus = GiveFeedback(parsedGuess, correctNum);
-                    numberTries++;
-                }
+                guessStatus = DetermineTryAgain(guessStatus, parsedGuess, correctNum);
 
                 //inform of win or loss and end game
-                gameComplete = EndGame(guessStatus, gameComplete);
+                gameComplete = EndGame(guessStatus);
             }
+        }
+
+        public static void Main(string[] args)
+        {
+            PlayNumberGuesser();
+            Console.ReadLine();
         }  
     }
 }
