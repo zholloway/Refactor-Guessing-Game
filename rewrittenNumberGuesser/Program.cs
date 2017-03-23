@@ -77,6 +77,18 @@ namespace rewrittenNumberGuesser
             return gameComplete;
         }
 
+        public static string CreateGuessList ()
+        {
+            var list = "Previous guesses: ";
+            return list;
+        }
+
+        public static string AddToGuessList (int parsedGuess, string guessStatus)
+        {
+            var addition = $"{parsedGuess} ({guessStatus}) ";
+            return addition;
+        }
+
         public static void Main(string[] args)
         {
             var gameComplete = false;
@@ -96,9 +108,12 @@ namespace rewrittenNumberGuesser
 
                 //try again if wrong
                 var numberTries = 1;
+                var pastGuesses = CreateGuessList();
 
                 while (guessStatus != "correct" && numberTries < 5)
                 {
+                    pastGuesses += AddToGuessList(parsedGuess, guessStatus);
+                    Console.WriteLine(pastGuesses);
                     parsedGuess = ParseUserGuess(PromptUserGuess());
                     guessStatus = GiveFeedback(parsedGuess, correctNum);
                     numberTries++;
@@ -107,6 +122,8 @@ namespace rewrittenNumberGuesser
                 //inform of win or loss and end game
                 gameComplete = EndGame(guessStatus, gameComplete);
             }
+
+            //create Link and store new guess
         }  
     }
 }
