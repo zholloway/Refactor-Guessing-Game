@@ -31,6 +31,7 @@ namespace rewrittenNumberGuesser
             while (wasSuccessful != true)
             {
                 Console.WriteLine("Oops, that is not number. Please try again.");
+                userGuess = PromptUserGuess();
                 wasSuccessful = int.TryParse(userGuess, out parsedGuess);
             }
 
@@ -124,12 +125,13 @@ namespace rewrittenNumberGuesser
                 //inform of win or loss and end game
                 gameComplete = EndGame(guessStatus);
             }
+
+            Console.ReadLine();
         }
 
         public static void Main(string[] args)
         {
-            PlayNumberGuesser();
-            Console.ReadLine();
+            PlayNumberGuesser();           
         }  
     }
 }
