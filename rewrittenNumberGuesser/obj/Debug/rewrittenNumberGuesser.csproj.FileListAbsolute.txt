@@ -1,0 +1,6 @@
+c:\users\zack holloway\documents\visual studio 2017\Projects\rewrittenNumberGuesser\rewrittenNumberGuesser\obj\Debug\rewrittenNumberGuesser.csprojResolveAssemblyReference.cache
+c:\users\zack holloway\documents\visual studio 2017\Projects\rewrittenNumberGuesser\rewrittenNumberGuesser\bin\Debug\rewrittenNumberGuesser.exe.config
+c:\users\zack holloway\documents\visual studio 2017\Projects\rewrittenNumberGuesser\rewrittenNumberGuesser\bin\Debug\rewrittenNumberGuesser.exe
+c:\users\zack holloway\documents\visual studio 2017\Projects\rewrittenNumberGuesser\rewrittenNumberGuesser\bin\Debug\rewrittenNumberGuesser.pdb
+c:\users\zack holloway\documents\visual studio 2017\Projects\rewrittenNumberGuesser\rewrittenNumberGuesser\obj\Debug\rewrittenNumberGuesser.exe
+c:\users\zack holloway\documents\visual studio 2017\Projects\rewrittenNumberGuesser\rewrittenNumberGuesser\obj\Debug\rewrittenNumberGuesser.pdb

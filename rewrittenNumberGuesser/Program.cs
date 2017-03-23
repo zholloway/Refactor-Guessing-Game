@@ -56,18 +56,57 @@ namespace rewrittenNumberGuesser
                 Console.WriteLine("You got it right! Congratulations!");
                 guessStatus = "correct";
             }
+
+            return guessStatus;
         }
 
-        static void Main(string[] args)
+        public static bool EndGame (string guessStatus, bool gameComplete)
         {
-            //create random number
-            var correctNum = CreateRandomNumber(1, 101);
+            if (guessStatus == "correct")
+            {
+                gameComplete = true;
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("You failed. Game over.");
+                gameComplete = true;
+                Console.ReadLine();
+            }
 
-            //prompt for guess and parse
-            var parsedGuess = ParseUserGuess(PromptUserGuess());
+            return gameComplete;
+        }
 
-            //feedback
-            
+        public static void Main(string[] args)
+        {
+            var gameComplete = false;
+
+            while (gameComplete == false)
+            {
+
+                //create random number
+                var correctNum = CreateRandomNumber(1, 101);
+
+                //prompt for guess and parse
+                var parsedGuess = ParseUserGuess(PromptUserGuess());
+                Console.WriteLine(correctNum);
+
+                //feedback
+                var guessStatus = GiveFeedback(parsedGuess, correctNum);
+
+                //try again if wrong
+                var numberTries = 1;
+
+                while (guessStatus != "correct" && numberTries < 5)
+                {
+                    parsedGuess = ParseUserGuess(PromptUserGuess());
+                    guessStatus = GiveFeedback(parsedGuess, correctNum);
+                    numberTries++;
+                }
+
+                //inform of win or loss and end game
+                gameComplete = EndGame(guessStatus, gameComplete);
+            }
         }  
     }
 }
